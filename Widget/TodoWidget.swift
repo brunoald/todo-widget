@@ -34,20 +34,19 @@ class TodoTimelineProvider: IntentTimelineProvider {
 
     func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         self.request = TodoAPI.todos().print().sink(
-            receiveCompletion: { completion in
-                print(context)
-            },
+            receiveCompletion: { _ in },
             receiveValue: { todos in
                 var entries: [TodoEntry] = []
-                let entry = TodoEntry(
-                    title: configuration.title ?? "",
-                    date: Date(),
-                    value: todos.shuffled().first!.title,
-                    configuration: configuration
-                )
-                entries.append(entry)
-                let nextUpdate = Calendar.current.date(byAdding: .second, value: 5, to: Date())
-                let timeline = Timeline(entries: entries, policy: .after(nextUpdate!))
+                for (index, todo) in todos.enumerated() {
+                    let entry = TodoEntry(
+                        title: "TODO \(index)/\(todos.count)",
+                        date: Calendar.current.date(byAdding: .second, value: 10 * index, to: Date())!,
+                        value: todo.title,
+                        configuration: configuration
+                    )
+                    entries.append(entry)
+                }
+                let timeline = Timeline(entries: entries, policy: .atEnd)
                 self.request?.cancel()
                 completion(timeline)
             })
@@ -68,10 +67,12 @@ struct TodoWidgetView : View {
         VStack(alignment: .center, spacing: 5) {
             Text(entry.title).foregroundColor(.blue)
             Text(entry.value).foregroundColor(.gray)
-            Text(entry.date, style: .relative)
-                .foregroundColor(.orange)
-                .font(.subheadline)
-                .multilineTextAlignment(.center)
+            if self.entry.configuration.showTimer == true {
+                Text(entry.date, style: .relative)
+                    .foregroundColor(.orange)
+                    .font(.subheadline)
+                    .multilineTextAlignment(.center)
+            }
         }.frame(minWidth: 0,
                 maxWidth: .infinity,
                 minHeight: 0,

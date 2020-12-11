@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		60334CA825791023003F8FBC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60334CA725791023003F8FBC /* AppDelegate.swift */; };
 		60C30010257521FD00B36F9C /* Agent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C3000F257521FD00B36F9C /* Agent.swift */; };
 		60C30015257523B100B36F9C /* Agent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C3000F257521FD00B36F9C /* Agent.swift */; };
 		60C8AC2B256FFB6E0026A763 /* WidgetSampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C8AC2A256FFB6E0026A763 /* WidgetSampleApp.swift */; };
@@ -65,6 +66,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		60334CA725791023003F8FBC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		60C3000F257521FD00B36F9C /* Agent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Agent.swift; sourceTree = "<group>"; };
 		60C8AC27256FFB6E0026A763 /* WidgetSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WidgetSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60C8AC2A256FFB6E0026A763 /* WidgetSampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetSampleApp.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				60C8AC38256FFB710026A763 /* Info.plist */,
 				60C8AC35256FFB710026A763 /* WidgetSample.xcdatamodeld */,
 				60C8AC30256FFB710026A763 /* Preview Content */,
+				60334CA725791023003F8FBC /* AppDelegate.swift */,
 			);
 			path = WidgetSample;
 			sourceTree = "<group>";
@@ -371,6 +374,7 @@
 				60C8AC2D256FFB6E0026A763 /* ContentView.swift in Sources */,
 				60C8AC2B256FFB6E0026A763 /* WidgetSampleApp.swift in Sources */,
 				60C30010257521FD00B36F9C /* Agent.swift in Sources */,
+				60334CA825791023003F8FBC /* AppDelegate.swift in Sources */,
 				60C8AC37256FFB710026A763 /* WidgetSample.xcdatamodeld in Sources */,
 				60DC8AEF256FFCA200533794 /* Widget.intentdefinition in Sources */,
 			);
