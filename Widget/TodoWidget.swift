@@ -15,17 +15,17 @@ class TodoTimelineProvider: IntentTimelineProvider {
     
     func placeholder(in context: Context) -> TodoEntry {
         TodoEntry(
-            title: "Title",
             date: Date(),
-            value: "Placeholder",
+            title: "Title",
+            value: "Placeholder Placeholder Placeholder Placeholder Placeholder Placeholder Placeholder Placeholder",
             configuration: ConfigurationIntent()
         )
     }
 
     func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (TodoEntry) -> ()) {
         let entry = TodoEntry(
-            title: "Title",
             date: Date(),
+            title: "Title",
             value: "Snapshot",
             configuration: configuration
         )
@@ -39,8 +39,8 @@ class TodoTimelineProvider: IntentTimelineProvider {
                 var entries: [TodoEntry] = []
                 for (index, todo) in todos.enumerated() {
                     let entry = TodoEntry(
-                        title: "TODO \(index)/\(todos.count)",
                         date: Calendar.current.date(byAdding: .second, value: 10 * index, to: Date())!,
+                        title: "\(configuration.title ?? "TODO") \(index)/\(todos.count)",
                         value: todo.title,
                         configuration: configuration
                     )
@@ -54,17 +54,17 @@ class TodoTimelineProvider: IntentTimelineProvider {
 }
 
 struct TodoEntry: TimelineEntry {
-    var title: String
     var date: Date
+    let title: String
     let value: String
     let configuration: ConfigurationIntent
 }
 
 struct TodoWidgetView : View {
-    var entry: TodoTimelineProvider.Entry
+    var entry: TodoEntry
 
     var body: some View {
-        VStack(alignment: .center, spacing: 5) {
+        VStack(alignment: .center) {
             Text(entry.title).foregroundColor(.blue)
             Text(entry.value).foregroundColor(.gray)
             if self.entry.configuration.showTimer == true {
@@ -73,12 +73,7 @@ struct TodoWidgetView : View {
                     .font(.subheadline)
                     .multilineTextAlignment(.center)
             }
-        }.frame(minWidth: 0,
-                maxWidth: .infinity,
-                minHeight: 0,
-                maxHeight: .infinity,
-                alignment: .center
-        ).background(Color.white)
+        }.background(Color.white)
     }
 }
 
@@ -96,6 +91,7 @@ struct TodoWidget: Widget {
         }
         .configurationDisplayName("TODO Widget")
         .description("See a random TODO item.")
+        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
     }
 }
 
@@ -103,8 +99,8 @@ struct Widget_Previews: PreviewProvider {
     static var previews: some View {
         TodoWidgetView(
             entry: TodoEntry(
-                title: "Title",
                 date: Date(),
+                title: "Title",
                 value: "Test",
                 configuration: ConfigurationIntent()
             ))
